@@ -1,0 +1,67 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Claude Code tooling — installed/vendored skills, not project content.
+# .claude/skills/rinkconnect-design is the exception: it's this project's
+# own design-system reference, not a vendored skill package. Root CLAUDE.md
+# is untouched by this rule since it's this repo's own checked-in file.
+.agents/
+.claude/skills/*
+!.claude/skills/rinkconnect-design/
+
+# Firebase Hosting local deploy cache
+.firebase/
+
+# Supabase CLI local runtime state (project config supabase/config.toml
+# is still tracked)
+supabase/.branches/
+supabase/.temp/
+
+# Not project content — dead Firebase scaffold, install lockfile, and a
+# planning doc kept outside version control by choice
+public/
+skills-lock.json
+rinkconnect_data_layer_plan.pdf
