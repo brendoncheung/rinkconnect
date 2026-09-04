@@ -141,6 +141,18 @@ ledger: the adults on the membership, and skaters at or above the club's
 minimum age / grade threshold. Eligibility is a property of the **person**;
 obligation is a property of the **membership**.
 
+## Skater (login role) — **RESOLVED**
+
+A third, read-only login alongside coordinator and parent: a skater can view
+events and their own membership's hours, independent of whether a parent
+relays that information. Requested by Alena Lunin (PSM Icehouse) so a skater
+isn't dependent on a parent sharing info.
+
+This is a different axis from **Eligible contributor** below — that's about
+whose hours credit a balance; this is about who can log in and see what.
+`Person.isSkater` already exists as a flag but has no login of its own yet.
+No write access — a skater cannot claim slots or log hours.
+
 ## Event
 
 Something the club runs that requires volunteers. Carries a list of

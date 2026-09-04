@@ -28,6 +28,12 @@ parents will not do.
 Email carries the balance reminder in v1. SMS is a planned upgrade, not a
 v1 requirement.
 
+**Amended by [ADR 0009](0009-web-push-for-event-and-slot-reminders.md):**
+event and volunteer-slot reminders (a different reminder from the balance
+one this ADR governs) use web push instead, accepting the iOS gap this ADR
+originally rejected web push for. The balance reminder itself is unaffected
+— still email, still SMS as the named upgrade path.
+
 ## Consequences
 
 **The obvious objection is that email is what failed.** It isn't quite the
