@@ -3,9 +3,6 @@
 **Status:** Accepted
 **Date:** 2026-08-05
 
-Parent-visible balances (point 3) were accepted with their cost understood:
-parent authentication and an invite flow for ~100 families land in v1.
-
 ## Context
 
 FWISC charges a fee to families who do not complete their volunteer hours by
@@ -37,7 +34,7 @@ Two further facts bear on this:
   keeping the record and the person owing the money are different people, and
   the owing party has no independent record of their own.
 
-## Decision (proposed)
+## Decision
 
 Treat the hours ledger as a record of financial consequence:
 
@@ -48,6 +45,15 @@ Treat the hours ledger as a record of financial consequence:
    number — it decomposes into the shifts that produced it.
 3. **Parents can see their own balance continuously**, all season, without
    asking the coordinator.
+
+## Alternatives considered
+
+**A mutable balance with no parent visibility.** Faster to build — a single
+integer column, no correction log, no parent auth. Rejected: the coordinator
+absorbs every dispute personally at season end with no shared evidence to point
+at, and it removes the only parent-adoption mechanism identified so far, making
+v1 a coordinator-only tool by consequence rather than by choice. Acceptable only
+as a fallback if point 3 proves too costly for a first season.
 
 ## Consequences
 
@@ -73,14 +79,7 @@ have already demonstrated they will ignore.
 - Visible balances generate questions the coordinator must field, at least
   initially. The bet is that these are cheaper than end-of-season disputes.
 
-**If rejected**, the fallback is a mutable balance with no parent visibility:
-faster to build, and the coordinator absorbs every dispute personally at
-season end with no shared evidence to point at. That may be acceptable for a
-first season with one club — but it removes the only parent-adoption mechanism
-identified so far, which would make v1 a coordinator-only tool by consequence
-rather than by choice.
-
-## Open
+## Open questions
 
 - What is the fee amount, and is it flat or per unworked hour?
 - Who has authority to waive or adjust a balance — the coordinator alone, or

@@ -1,6 +1,6 @@
 # 0004. Email is the reminder channel for v1
 
-**Status:** Accepted
+**Status:** Accepted — amended by [ADR 0009](0009-web-push-for-event-and-slot-reminders.md)
 **Date:** 2026-08-05
 
 ## Context
@@ -59,10 +59,8 @@ would call the whole premise into question rather than just the channel.
   defence rests on the parent having been told.
 - Every reminder must deep-link to the balance view, or the email becomes the
   product and the app is never opened.
-
-## Supersession path
-
-Adding SMS later should not require reworking this. Reminders should be
-generated as channel-agnostic events with a rendering step per channel, so
-SMS becomes an additional renderer and a per-parent channel preference —
-not a rewrite of the reminder logic.
+- **Adding SMS later must not require reworking this.** Reminders should be
+  generated as channel-agnostic events with a per-channel rendering step, so
+  SMS becomes an additional renderer plus a per-parent channel preference —
+  not a rewrite of the reminder logic. [ADR 0009](0009-web-push-for-event-and-slot-reminders.md)
+  relies on this seam for web push.

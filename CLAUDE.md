@@ -106,7 +106,11 @@ contributor) and flags which terms are still unresolved with the club.
 
 ### Issue tracker
 
-GitHub Issues via the `gh` CLI (no remote configured yet). See `docs/agents/issue-tracker.md`.
+GitHub Issues via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Defaults kept: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 

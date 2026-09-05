@@ -10,7 +10,7 @@ show both in a single line — *"2025-2026 ended with 102 members … as of
 07/03/2026, 77 members have registered for the 2026-2027 season."* Those are
 different counts of different things.
 
-Adding a dues paid/unpaid flag ([ADR 0007](0007-rinkconnect-is-source-of-truth-for-members.md))
+Adding a dues paid/unpaid flag ([ADR 0007](0007-rinkconnect-owns-the-membership-roster.md))
 forced the distinction, because paid-ness is obviously annual — and so, on
 inspection, are hours owed and the hours ledger.
 
@@ -78,7 +78,7 @@ owe hours, be credited, and be billed with nobody logged in.
 filter, and the coordinator's screens must always be scoped to a season. That
 is the price of not duplicating household data annually, and it is worth it.
 
-## Open
+## Open questions
 
 - ~~Does an unpaid family still owe volunteer hours?~~ **DECIDED: yes.** The
   obligation starts at registration, not at payment. Registering is the
