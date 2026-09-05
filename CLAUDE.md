@@ -79,9 +79,12 @@ Material widgets.
 
 Three things are mid-move and the docs lag the code:
 
-1. `docs/repository-and-datasource-plan.md` and `docs/riverpod-architecture-guide.md`
-   are **specs to execute, not descriptions of what exists**. They say `lib/state/`;
-   the files actually live in `lib/data/service/state/`.
+1. `docs/repository-and-datasource-plan.md` is a **spec to execute, not a
+   description of what exists** — nothing in it is built yet. It was rewritten
+   2026-09-05 around the repository seam and local Supabase; read it, not
+   `docs/riverpod-architecture-guide.md`, where the two disagree. That guide is
+   only partly updated: it still names the deleted datasource classes and says
+   `lib/state/`, where the files actually live in `lib/data/service/state/`.
 2. The backend seam is a **repository per aggregate** under
    `lib/data/repository/`. The directories exist but are empty — nothing is
    written yet, and `ClubStore` still reads `seed_data.dart` directly. An
