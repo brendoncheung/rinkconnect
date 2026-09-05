@@ -6,6 +6,16 @@ format as `repository-and-datasource-plan.md`.*
 Source article:
 <https://codewithandrea.com/articles/flutter-app-architecture-riverpod-introduction/>
 
+> **Partly superseded, 2026-09-05.** `repository-and-datasource-plan.md` was
+> rewritten: the seam is now a **repository per aggregate** under
+> `lib/data/repository/`, fixture data comes from **local Supabase** rather than a
+> JSON asset, and the `ClubDataSource` / `LocalClubDataSource` /
+> `RemoteClubDataSource` classes named throughout this document were deleted
+> without being built. Read that plan as the current spec where the two disagree:
+> its step numbers, its file layout, and its position on the repository layer all
+> win. Passes 2 and 3 below — controllers and feature folders — are unaffected and
+> still stand; this document has not otherwise been reworked.
+
 ## Context
 
 RinkConnect is a working demo: one in-memory `ClubState`, a `Notifier` store, five

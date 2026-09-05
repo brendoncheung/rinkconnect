@@ -4,7 +4,6 @@ import 'dart:convert';
 class Membership {
 
   final String id;
-  final String clubId;
   final String familyId;
   final String volunteeringRecordId;
 
@@ -15,10 +14,8 @@ class Membership {
   final double hoursOwed;
 
   final bool isPaid;
-  
   Membership({
     required this.id,
-    required this.clubId,
     required this.familyId,
     required this.volunteeringRecordId,
     required this.startDate,
@@ -27,10 +24,10 @@ class Membership {
     required this.hoursOwed,
     required this.isPaid,
   });
+ 
 
   Membership copyWith({
     String? id,
-    String? clubId,
     String? familyId,
     String? volunteeringRecordId,
     DateTime? startDate,
@@ -41,7 +38,6 @@ class Membership {
   }) {
     return Membership(
       id: id ?? this.id,
-      clubId: clubId ?? this.clubId,
       familyId: familyId ?? this.familyId,
       volunteeringRecordId: volunteeringRecordId ?? this.volunteeringRecordId,
       startDate: startDate ?? this.startDate,
@@ -55,7 +51,6 @@ class Membership {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'clubId': clubId,
       'familyId': familyId,
       'volunteeringRecordId': volunteeringRecordId,
       'startDate': startDate.millisecondsSinceEpoch,
@@ -69,7 +64,6 @@ class Membership {
   factory Membership.fromMap(Map<String, dynamic> map) {
     return Membership(
       id: map['id'] as String,
-      clubId: map['clubId'] as String,
       familyId: map['familyId'] as String,
       volunteeringRecordId: map['volunteeringRecordId'] as String,
       startDate: DateTime.fromMillisecondsSinceEpoch(map['startDate'] as int),
@@ -86,7 +80,7 @@ class Membership {
 
   @override
   String toString() {
-    return 'Membership(id: $id, clubId: $clubId, familyId: $familyId, volunteeringRecordId: $volunteeringRecordId, startDate: $startDate, endDate: $endDate, feePerHour: $feePerHour, hoursOwed: $hoursOwed, isPaid: $isPaid)';
+    return 'Membership(id: $id, familyId: $familyId, volunteeringRecordId: $volunteeringRecordId, startDate: $startDate, endDate: $endDate, feePerHour: $feePerHour, hoursOwed: $hoursOwed, isPaid: $isPaid)';
   }
 
   @override
@@ -95,7 +89,6 @@ class Membership {
   
     return 
       other.id == id &&
-      other.clubId == clubId &&
       other.familyId == familyId &&
       other.volunteeringRecordId == volunteeringRecordId &&
       other.startDate == startDate &&
@@ -108,7 +101,6 @@ class Membership {
   @override
   int get hashCode {
     return id.hashCode ^
-      clubId.hashCode ^
       familyId.hashCode ^
       volunteeringRecordId.hashCode ^
       startDate.hashCode ^
@@ -117,4 +109,4 @@ class Membership {
       hoursOwed.hashCode ^
       isPaid.hashCode;
   }
-}
+  }

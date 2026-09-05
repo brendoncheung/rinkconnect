@@ -13,7 +13,7 @@ Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all o
 
 Infer the repo from `git remote -v`; `gh` does this automatically when run inside a clone.
 
-**Note:** this repo has no GitHub remote yet (just `git init`'d). Create one (e.g. `gh repo create`) before these commands will work.
+`origin` is [github.com/brendoncheung/rinkconnect](https://github.com/brendoncheung/rinkconnect); Issues are enabled there and `gh` is authenticated with `repo` scope.
 
 ## Pull requests as a triage surface
 

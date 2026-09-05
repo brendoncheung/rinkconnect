@@ -3,9 +3,6 @@
 **Status:** Accepted
 **Date:** 2026-08-05
 
-Accepted with the fee line confirmed: v1 computes what each family owes and
-hands it to the treasurer. No payment processing in v1.
-
 ## Context
 
 Three distinct club pains surfaced during design: volunteer hour
@@ -41,7 +38,7 @@ is a higher bar than beating nothing.
 - **Fee collection.** v1 computes the amount owed and hands it to the
   treasurer. No payment processor, no card handling, no reconciliation.
 - **Membership dues — payment only.** Amended by
-  [ADR 0007](0007-rinkconnect-is-source-of-truth-for-members.md): because
+  [ADR 0007](0007-rinkconnect-owns-the-membership-roster.md): because
   RinkConnect is the source of truth for membership, and membership is
   contingent on dues, dues **status** is in v1 as a manually set paid/unpaid
   flag. Collecting or processing the money remains out.
@@ -54,16 +51,15 @@ is a higher bar than beating nothing.
   *experience* is not v1)
 - Slot templates for recurring events
 
-## The fee line, specifically
+### On the fee line
 
 Computing the fee and collecting it are separated deliberately. Computation is
 the whole point of the ledger and requires nothing but arithmetic over
 approved hours. Collection drags in a payment processor, PCI scope, refunds,
 failed charges, and a reconciliation burden — for a club whose treasurer
-already has a working process for taking money.
-
-This keeps the entire motivational mechanism (a visible, growing financial
-exposure) while keeping money out of the system.
+already has a working process for taking money. This keeps the entire
+motivational mechanism (a visible, growing financial exposure) while keeping
+money out of the system.
 
 ## Alternatives considered
 
@@ -99,8 +95,8 @@ record to point at.
   it as a coordinator tool. That is an acceptable floor, and it is worth
   recognising it as the likely outcome rather than a failure.
 
-## Open
+## Open questions
 
-Assumptions in [ADR 0002](0002-volunteer-hours-obligation-model.md) and the
-questions at the end of ADR 0005 should be resolved with the club before
-schema work begins.
+Open questions in [ADR 0002](0002-volunteer-hours-obligation-model.md) and at
+the end of [ADR 0005](0005-fixed-slots-and-signup-lifecycle.md) should be
+resolved with the club before schema work begins.

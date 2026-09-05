@@ -55,6 +55,21 @@ Earlier ambiguity — whether "board member" meant the governing board or any
 dues-paying family — is resolved: **the hours obligation falls on all member
 families, not just the board.**
 
+## Club contacts — **RESOLVED**
+
+A free-text list of club leadership — president, vice president, youth
+coordinator, coach, etc. — with name, role, and email, maintained directly by
+the coordinator.
+
+Started as a request for a skater-to-skater "directory"; grilling revealed
+that wasn't actually wanted. This is a static staff contact card, not a peer
+directory, and not opt-in — these are public club roles, not families
+choosing to share personal information. **Not** linked to `Person`/`Family`
+records: some roles (a coach) may not correspond to a registered member at
+all. See [ADR 0013](adr/0013-club-contacts-is-not-derived-from-membership.md).
+_Avoid_: directory (implies something peer-to-peer, or derived from the
+roster — this is neither).
+
 ## Coordinator — **UNRESOLVED**
 
 The person who creates and manages events and gets volunteer slots filled.
@@ -121,7 +136,7 @@ creates a new season membership.
 
 A manually set **paid / unpaid** flag on a season membership. RinkConnect
 stores it; it never processes payment.
-See [ADR 0007](adr/0007-rinkconnect-is-source-of-truth-for-members.md).
+See [ADR 0007](adr/0007-rinkconnect-owns-the-membership-roster.md).
 
 ## Obligated unit
 
@@ -143,21 +158,29 @@ obligation is a property of the **membership**.
 
 ## Skater (login role) — **RESOLVED**
 
-A third, read-only login alongside coordinator and parent: a skater can view
-events and their own membership's hours, independent of whether a parent
-relays that information. Requested by Alena Lunin (PSM Icehouse) so a skater
-isn't dependent on a parent sharing info.
+A third, read-only login alongside coordinator and parent: a skater sees the
+same events list and family hours balance a parent sees, independent of
+whether a parent relays that information. Requested by Alena Lunin (PSM
+Icehouse) so a skater isn't dependent on a parent sharing info.
 
 This is a different axis from **Eligible contributor** below — that's about
 whose hours credit a balance; this is about who can log in and see what.
 `Person.isSkater` already exists as a flag but has no login of its own yet.
 No write access — a skater cannot claim slots or log hours.
 
+**Authenticates via a PIN or invite code**, issued by a parent or the
+coordinator — not an email/password account like the other two roles. Most
+skaters are minors without their own email; requiring one for a read-only
+screen didn't fit. See [ADR 0012](adr/0012-skater-login-uses-a-pin-not-email.md).
+
 ## Event
 
 Something the club runs that requires volunteers. Carries a list of
-**volunteer slots**. The agenda's "Revenue Events" and "Special Events"
-suggest events have types with different purposes.
+**volunteer slots** and a registration **deadline** — FWISC doesn't restrict
+who can attend an event, so deadline is the operative date, not audience. See
+[ADR 0010](adr/0010-event-deadline-replaces-who.md). The agenda's "Revenue
+Events" and "Special Events" suggest events have types with different
+purposes.
 
 ## Volunteer slot
 

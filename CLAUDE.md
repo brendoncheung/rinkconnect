@@ -65,7 +65,7 @@ browser reload doesn't lose them.
 lib/core/core_widgets/   RC* design-system widgets (RCButton, RCCard, …)
 lib/core/rinkconnect_theme.dart   color/type tokens
 lib/data/service/state/  club_state.dart, club_store.dart, seed_data.dart
-lib/data/service/        datasource.dart (contract), local_datasource.dart (stubbed)
+lib/data/repository/     auth/, club/ — empty; the intended Supabase seam
 lib/models/              the models in use
 lib/models/new_models/   in-progress rewrite — NOT wired to anything yet
 lib/screens/<feature>/   feature folders, widgets/ + view_models/
@@ -79,11 +79,18 @@ Material widgets.
 
 Three things are mid-move and the docs lag the code:
 
-1. `docs/repository-and-datasource-plan.md` and `docs/riverpod-architecture-guide.md`
-   are **specs to execute, not descriptions of what exists**. They say `lib/state/`;
-   the files actually live in `lib/data/service/state/`.
-2. `lib/data/service/datasource.dart` is the intended backend seam. Its
-   implementations still throw `UnimplementedError`; the store does not use it yet.
+1. `docs/repository-and-datasource-plan.md` is a **spec to execute, not a
+   description of what exists** — nothing in it is built yet. It was rewritten
+   2026-09-05 around the repository seam and local Supabase; read it, not
+   `docs/riverpod-architecture-guide.md`, where the two disagree. That guide is
+   only partly updated: it still names the deleted datasource classes and says
+   `lib/state/`, where the files actually live in `lib/data/service/state/`.
+2. The backend seam is a **repository per aggregate** under
+   `lib/data/repository/`. The directories exist but are empty — nothing is
+   written yet, and `ClubStore` still reads `seed_data.dart` directly. An
+   earlier `datasource.dart` / `local_datasource.dart` pair was deleted rather
+   than kept as a stub; don't reintroduce it. New work goes in
+   `lib/models/new_models/` behind a repository.
 3. `lib/models/new_models/` is an unwired parallel model set aimed at the Supabase
    schema. `lib/models/` is what runs.
 
@@ -95,10 +102,12 @@ expects `--dart-define`; these disagree.
 
 ## Decisions live in docs/
 
-`docs/adr/` holds eight accepted ADRs — read the relevant one before changing
-domain rules rather than inferring intent from code. `docs/glossary.md` fixes the
-domain vocabulary (member, family, season membership, obligated unit, eligible
-contributor) and flags which terms are still unresolved with the club.
+`docs/adr/` holds fifteen accepted ADRs — read the relevant one before changing
+domain rules rather than inferring intent from code. `docs/adr/README.md` has the
+template and the rule that an accepted ADR is never rewritten: a later ADR
+supersedes or amends it. `docs/glossary.md` fixes the domain vocabulary
+(member, family, season membership, obligated unit, eligible contributor) and
+flags which terms are still unresolved with the club.
 `docs/mvp-build-progress.md` is the resume point and known-rough-edges list.
 `docs/questions-for-the-club.md` tracks what only FWISC can answer.
 
@@ -106,7 +115,11 @@ contributor) and flags which terms are still unresolved with the club.
 
 ### Issue tracker
 
-GitHub Issues via the `gh` CLI (no remote configured yet). See `docs/agents/issue-tracker.md`.
+GitHub Issues via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Defaults kept: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 
