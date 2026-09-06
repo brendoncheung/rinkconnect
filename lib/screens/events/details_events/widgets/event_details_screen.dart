@@ -42,6 +42,9 @@ class EventScreen extends ConsumerWidget {
     final myFamilyId = club.currentPerson.familyId;
     final canClaim = club.role == UserRole.parent;
 
+    final slots = club.slotsForEvent(event.id);
+    final totalHours = slots.fold<double>(0, (sum, slot) => sum + slot.hours);
+
     return Scaffold(
       backgroundColor: RinkconnectColors.glacier,
       body: SingleChildScrollView(
@@ -88,11 +91,11 @@ class EventScreen extends ConsumerWidget {
                     color: RinkconnectColors.glacier400,
                     height: 32,
                   ),
-                  if (event.volunteerSlots.isNotEmpty) ...[
+                  if (slots.isNotEmpty) ...[
                     RCSectionTitle(
                       'Volunteer slots',
                       trailing: Text(
-                        '${event.totalHours.toStringAsFixed(event.totalHours == event.totalHours.roundToDouble() ? 0 : 1)} hours total',
+                        '${totalHours.toStringAsFixed(totalHours == totalHours.roundToDouble() ? 0 : 1)} hours total',
                         style: const TextStyle(
                           fontSize: 13,
                           color: RinkconnectColors.evening400,
@@ -108,12 +111,12 @@ class EventScreen extends ConsumerWidget {
                         children: [
                           for (
                             var i = 0;
-                            i < event.volunteerSlots.length;
+                            i < slots.length;
                             i++
                           )
                             Builder(
                               builder: (context) {
-                                final slot = event.volunteerSlots[i];
+                                final slot = slots[i];
                                 final signup = club.signupForSlot(slot.id);
                                 final holder = signup == null
                                     ? null

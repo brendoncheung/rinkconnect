@@ -115,32 +115,6 @@ ClubState buildSeedState() {
       location: 'PSM Icehouse',
       who: 'Open to all members',
       badge: 'Volunteers needed',
-      volunteerSlots: const [
-        VolunteerSlot(
-          id: 's-fs-1',
-          label: 'Door check-in',
-          timeRange: '3:30 – 5:30',
-          hours: 2,
-        ),
-        VolunteerSlot(
-          id: 's-fs-2',
-          label: 'Concession stand',
-          timeRange: '4:00 – 6:00',
-          hours: 2,
-        ),
-        VolunteerSlot(
-          id: 's-fs-3',
-          label: 'Raffle table',
-          timeRange: '5:00 – 7:00',
-          hours: 2,
-        ),
-        VolunteerSlot(
-          id: 's-fs-4',
-          label: 'Clean-up crew',
-          timeRange: '7:30 – 9:00',
-          hours: 1.5,
-        ),
-      ],
     ),
     Event(
       id: 'e-learn-to-skate',
@@ -154,26 +128,6 @@ ClubState buildSeedState() {
       location: 'PSM Icehouse',
       who: 'Open to all members',
       badge: 'Volunteers needed',
-      volunteerSlots: const [
-        VolunteerSlot(
-          id: 's-lts-1',
-          label: 'Sign-up table',
-          timeRange: '8:30 – 10:30',
-          hours: 2,
-        ),
-        VolunteerSlot(
-          id: 's-lts-2',
-          label: 'On-ice helper',
-          timeRange: '9:00 – 11:00',
-          hours: 2,
-        ),
-        VolunteerSlot(
-          id: 's-lts-3',
-          label: 'Skate rental desk',
-          timeRange: '8:45 – 12:00',
-          hours: 3,
-        ),
-      ],
     ),
     Event(
       id: 'e-fundraiser',
@@ -186,20 +140,73 @@ ClubState buildSeedState() {
       endTime: DateTime(2026, 10, 10, 15),
       location: 'PSM Icehouse — 2nd floor banquet room',
       who: 'Open to all members',
-      volunteerSlots: const [
-        VolunteerSlot(
-          id: 's-fr-1',
-          label: 'Bake sale table',
-          timeRange: '10:30 – 13:00',
-          hours: 2.5,
-        ),
-        VolunteerSlot(
-          id: 's-fr-2',
-          label: 'Silent auction desk',
-          timeRange: '12:00 – 15:00',
-          hours: 3,
-        ),
-      ],
+    ),
+  ];
+
+  // Slots reference their event by id rather than nesting inside it.
+  const slots = [
+    VolunteerSlot(
+      id: 's-fs-1',
+      eventId: 'e-fall-showcase',
+      label: 'Door check-in',
+      timeRange: '3:30 – 5:30',
+      hours: 2,
+    ),
+    VolunteerSlot(
+      id: 's-fs-2',
+      eventId: 'e-fall-showcase',
+      label: 'Concession stand',
+      timeRange: '4:00 – 6:00',
+      hours: 2,
+    ),
+    VolunteerSlot(
+      id: 's-fs-3',
+      eventId: 'e-fall-showcase',
+      label: 'Raffle table',
+      timeRange: '5:00 – 7:00',
+      hours: 2,
+    ),
+    VolunteerSlot(
+      id: 's-fs-4',
+      eventId: 'e-fall-showcase',
+      label: 'Clean-up crew',
+      timeRange: '7:30 – 9:00',
+      hours: 1.5,
+    ),
+    VolunteerSlot(
+      id: 's-lts-1',
+      eventId: 'e-learn-to-skate',
+      label: 'Sign-up table',
+      timeRange: '8:30 – 10:30',
+      hours: 2,
+    ),
+    VolunteerSlot(
+      id: 's-lts-2',
+      eventId: 'e-learn-to-skate',
+      label: 'On-ice helper',
+      timeRange: '9:00 – 11:00',
+      hours: 2,
+    ),
+    VolunteerSlot(
+      id: 's-lts-3',
+      eventId: 'e-learn-to-skate',
+      label: 'Skate rental desk',
+      timeRange: '8:45 – 12:00',
+      hours: 3,
+    ),
+    VolunteerSlot(
+      id: 's-fr-1',
+      eventId: 'e-fundraiser',
+      label: 'Bake sale table',
+      timeRange: '10:30 – 13:00',
+      hours: 2.5,
+    ),
+    VolunteerSlot(
+      id: 's-fr-2',
+      eventId: 'e-fundraiser',
+      label: 'Silent auction desk',
+      timeRange: '12:00 – 15:00',
+      hours: 3,
     ),
   ];
 
@@ -247,6 +254,7 @@ ClubState buildSeedState() {
     memberships: memberships,
     events: events,
     signups: signups,
+    slots: slots,
     currentPersonId: kCoordinatorId,
     role: UserRole.coordinator,
     feeRatePerHour: kFeeRatePerHour,

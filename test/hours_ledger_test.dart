@@ -28,11 +28,8 @@ void main() {
   String openSlotId() =>
       container.read(clubStoreProvider).unfilledSlots.first.slot.id;
 
-  String eventIdForSlot(String slotId) => container
-      .read(clubStoreProvider)
-      .events
-      .firstWhere((e) => e.volunteerSlots.any((s) => s.id == slotId))
-      .id;
+  String eventIdForSlot(String slotId) =>
+      container.read(clubStoreProvider).slotById(slotId)!.eventId;
 
   test('claiming a slot does not move the balance', () {
     store().setRole(UserRole.parent);

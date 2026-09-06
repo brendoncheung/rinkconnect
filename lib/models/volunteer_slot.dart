@@ -10,6 +10,7 @@
 /// left early.
 class VolunteerSlot {
   final String id;
+  final String eventId;
   final String label;
   final String timeRange;
   final double hours;
@@ -18,7 +19,7 @@ class VolunteerSlot {
     required this.id,
     required this.label,
     required this.timeRange,
-    required this.hours,
+    required this.hours, required this.eventId,
   });
 
   /// `2` rather than `2.0`, `1.5` kept as-is.

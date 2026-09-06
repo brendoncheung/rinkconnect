@@ -102,7 +102,7 @@ class EventsListScreen extends ConsumerWidget {
                       spacing: 8,
                       runSpacing: 8,
                       children: [
-                        for (final slot in event.volunteerSlots)
+                        for (final slot in club.slotsForEvent(event.id))
                           RCBadge(
                             label:
                                 '${slot.label} · ${slot.hoursLabel}h',
@@ -111,7 +111,7 @@ class EventsListScreen extends ConsumerWidget {
                                 : RCBadgeTone.warm,
                             dot: club.slotIsTaken(slot.id),
                           ),
-                        if (event.volunteerSlots.isEmpty)
+                        if (club.slotsForEvent(event.id).isEmpty)
                           const RCBadge(
                             label: 'No volunteer slots',
                             tone: RCBadgeTone.neutral,
