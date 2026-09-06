@@ -66,8 +66,7 @@ lib/core/core_widgets/   RC* design-system widgets (RCButton, RCCard, …)
 lib/core/rinkconnect_theme.dart   color/type tokens
 lib/data/service/state/  club_state.dart, club_store.dart, seed_data.dart
 lib/data/repository/     auth/, club/ — empty; the intended Supabase seam
-lib/models/              the models in use
-lib/models/new_models/   in-progress rewrite — NOT wired to anything yet
+lib/models/              the models — the only set; being flattened to FKs
 lib/screens/<feature>/   feature folders, widgets/ + view_models/
 ```
 
@@ -89,10 +88,13 @@ Three things are mid-move and the docs lag the code:
    `lib/data/repository/`. The directories exist but are empty — nothing is
    written yet, and `ClubStore` still reads `seed_data.dart` directly. An
    earlier `datasource.dart` / `local_datasource.dart` pair was deleted rather
-   than kept as a stub; don't reintroduce it. New work goes in
-   `lib/models/new_models/` behind a repository.
-3. `lib/models/new_models/` is an unwired parallel model set aimed at the Supabase
-   schema. `lib/models/` is what runs.
+   than kept as a stub; don't reintroduce it. New model work goes in
+   `lib/models/` behind a repository.
+3. `lib/models/` is being flattened so every relationship is a foreign key —
+   `docs/flatten-models-to-foreign-keys.md` is the spec and the resume point.
+   Step 0 is done: the `lib/models/new_models/` parallel set is deleted, so
+   there is one model set again. Don't reintroduce it; if an older doc points
+   at `new_models`, that doc is stale.
 
 There are no Supabase migrations yet — the schema doesn't exist. `main.dart`
 initializes Supabase against a hardcoded hosted URL while `lib/core/supabase_config.dart`
