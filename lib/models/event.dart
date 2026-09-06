@@ -1,10 +1,9 @@
-import 'package:rinkconnect/models/volunteer_slot.dart';
-
 /// Something the club runs that needs volunteers.
 ///
-/// Carries a list of [VolunteerSlot]s. The old `numOfVolunteers` field is gone
-/// — it was a second representation of the same fact and could disagree with
-/// the slot list (ADR 0005). The count is derived from [volunteerSlots].
+/// Volunteer need is expressed as VolunteerSlots, which reference the event by
+/// `eventId` rather than sitting inside it. The old `numOfVolunteers` field is
+/// gone — it was a second representation of the same fact and could disagree
+/// with the slots themselves (ADR 0005).
 class Event {
   final String id;
   final String name;
@@ -16,8 +15,6 @@ class Event {
   final String who; // e.g. 'open to all members'
   final String? badge;
 
-  final List<VolunteerSlot> volunteerSlots;
-
   const Event({
     required this.id,
     required this.name,
@@ -28,13 +25,7 @@ class Event {
     required this.location,
     this.who = 'Open to all members',
     this.badge,
-    this.volunteerSlots = const [],
   });
-
-  int get slotCount => volunteerSlots.length;
-
-  double get totalHours =>
-      volunteerSlots.fold(0, (sum, slot) => sum + slot.hours);
 
   static const _weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   static const _months = [

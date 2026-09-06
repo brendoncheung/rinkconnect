@@ -2,9 +2,11 @@
 
 *You are writing the code. This is the spec and the order to build it in.*
 
-> **Progress:** Step 0 done — `lib/models/new_models/` and the duplicate
-> `show_events/` event details screen are deleted. **Next: Step 1.** Tick steps
-> off here as you finish them so this doc stays the resume point.
+> **Progress:** Steps 0–7 done — `lib/models/` is fully flattened: every
+> relationship is a foreign key, `flutter analyze` is clean and the ledger tests
+> pass with only the one helper line changed. What remains is the manual
+> walkthrough under "Verification" below. See "Carried forward" for what this
+> pass deliberately left to the schema work.
 
 ## Context
 

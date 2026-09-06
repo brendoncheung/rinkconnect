@@ -26,7 +26,8 @@ class DashboardScreen extends ConsumerWidget {
 
     final openSlots = <String, int>{
       for (final event in club.events)
-        event.id: event.volunteerSlots
+        event.id: club
+            .slotsForEvent(event.id)
             .where((slot) => !club.slotIsTaken(slot.id))
             .length,
     };

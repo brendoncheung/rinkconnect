@@ -61,17 +61,21 @@ class ClubStore extends Notifier<ClubState> {
       endTime: DateTime(date.year, date.month, date.day, end.hour, end.minute),
       location: location,
       badge: slots.isEmpty ? null : 'Volunteers needed',
-      volunteerSlots: [
-        for (final slot in slots)
-          VolunteerSlot(
-            id: _id('s'),
-            label: slot.label,
-            timeRange: slot.timeRange,
-            hours: slot.hours,
-          ),
-      ],
     );
-    state = state.copyWith(events: [...state.events, event]);
+    final newSlots = [
+      for (final slot in slots)
+        VolunteerSlot(
+          id: _id('s'),
+          eventId: eventId,
+          label: slot.label,
+          timeRange: slot.timeRange,
+          hours: slot.hours,
+        ),
+    ];
+    state = state.copyWith(
+      events: [...state.events, event],
+      slots: [...state.slots, ...newSlots],
+    );
     return event;
   }
 

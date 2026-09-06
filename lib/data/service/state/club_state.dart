@@ -21,6 +21,7 @@ class ClubState {
   final List<SeasonMembership> memberships;
   final List<Event> events;
   final List<Signup> signups;
+  final List<VolunteerSlot> slots;
 
   /// Who is "signed in". Switching this is how the demo changes viewpoint.
   final String currentPersonId;
@@ -38,6 +39,7 @@ class ClubState {
     required this.memberships,
     required this.events,
     required this.signups,
+    required this.slots,
     required this.currentPersonId,
     required this.role,
     required this.feeRatePerHour,
@@ -46,6 +48,7 @@ class ClubState {
   ClubState copyWith({
     List<Event>? events,
     List<Signup>? signups,
+    List<VolunteerSlot>? slots,
     List<SeasonMembership>? memberships,
     String? currentPersonId,
     UserRole? role,
@@ -58,6 +61,7 @@ class ClubState {
       memberships: memberships ?? this.memberships,
       events: events ?? this.events,
       signups: signups ?? this.signups,
+      slots: slots ?? this.slots,
       currentPersonId: currentPersonId ?? this.currentPersonId,
       role: role ?? this.role,
       feeRatePerHour: feeRatePerHour,
@@ -117,25 +121,28 @@ class ClubState {
   List<Signup> get awaitingReview =>
       signups.where((s) => s.state == SignupState.submitted).toList();
 
+  /// The slots belonging to one event.
+  List<VolunteerSlot> slotsForEvent(String eventId) =>
+      slots.where((s) => s.eventId == eventId).toList();
+
   /// Slots on upcoming events that nobody has claimed — the coordinator's
   /// most valuable screen.
   List<({Event event, VolunteerSlot slot})> get unfilledSlots {
     final result = <({Event event, VolunteerSlot slot})>[];
-    for (final event in events) {
-      for (final slot in event.volunteerSlots) {
-        if (!slotIsTaken(slot.id)) {
-          result.add((event: event, slot: slot));
-        }
-      }
+    for (final slot in slots) {
+      if (slotIsTaken(slot.id)) continue;
+      final event = eventById(slot.eventId);
+      // A slot pointing at an event that isn't there is a dangling reference,
+      // not a crash — leave it out of the coordinator's list.
+      if (event == null) continue;
+      result.add((event: event, slot: slot));
     }
     return result;
   }
 
   VolunteerSlot? slotById(String slotId) {
-    for (final event in events) {
-      for (final slot in event.volunteerSlots) {
-        if (slot.id == slotId) return slot;
-      }
+    for (final slot in slots) {
+      if (slot.id == slotId) return slot;
     }
     return null;
   }
